@@ -1,0 +1,33 @@
+.form {
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #000;
+  margin-top: 2rem;
+}
+
+.form__label {
+  width: 100%;
+  text-align: left;
+  font-size: 1.5rem;
+}
+
+.form__input {
+  margin-top: 0.5rem;
+  width: 100%;
+  border: 1px solid;
+}
+
+.form__button {
+  background-color: purple;
+  border: none;
+  width: 200px;
+  height: 80px;
+  color: white;
+  margin-top: 0.5rem;
+}

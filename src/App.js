@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import InputField from './Components/InputField/InputField';
+import Output from './Components/Output/Output';
 import './App.css';
 
+
 function App() {
+  const todoArr = [
+    {
+      id: 1,
+      text: 'Do all exercise!',
+    },
+  ];
+
+  const [newData, setNewData] = useState(todoArr);
+
+
+  const submittedData = (data) => {
+    console.log(data);
+    setNewData(prevState => {
+      return [...prevState, data];
+    });
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <InputField submit={submittedData} />
+      <Output data={newData} />
+    </>
   );
 }
 
