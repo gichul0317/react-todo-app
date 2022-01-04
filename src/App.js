@@ -21,12 +21,20 @@ function App() {
     });
   }
 
-  const deleteDataHandler = index => {
+  const deleteDataHandler = id => {
     setNewData(prevState => {
-      const updatedData = prevState.filter(item => item.id !== index);
+      const updatedData = prevState.filter(item => item.id !== id);
       return updatedData;
     })
   }
+
+  // const updateDataHandler = (id, value) => {
+  //   setNewData(prevState => {
+  //     prevState.map(item => {
+  //       return (item.id === id ? value : item)
+  //     })
+  //   })
+  // }
 
   let content = (
     <p style={{ textAlign: 'center' }}>Please add one...</p>
@@ -34,7 +42,9 @@ function App() {
 
   if (newData.length > 0) {
     content = (
-      <Output data={newData} removedata={deleteDataHandler} />
+      <Output data={newData} removedata={deleteDataHandler}
+      // updatedata={updateDataHandler}
+      />
     );
   }
 

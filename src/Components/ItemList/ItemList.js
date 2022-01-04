@@ -6,7 +6,7 @@ function ItemList(props) {
   }
 
   return (
-    <li onClick={deleteHandler} className="list">
+    <li className="list">
       {props.children}
     </li>
   )
