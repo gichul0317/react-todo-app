@@ -1,3 +1,6 @@
+@import '../../Partials/fonts';
+@import '../../Partials/mixins';
+
 .form {
   max-width: 1000px;
   width: 100%;
@@ -9,25 +12,20 @@
   border-radius: 10px;
   box-shadow: 0 0 5px #000;
   margin-top: 2rem;
+  &__label {
+    @include title;
+    text-align: left;
+  }
+  &__input {
+    width: 100%;
+    height: 100px;
+    padding: 0.5rem;
+  }
+  &__button {
+    @include text;
+    width: 250px;
+    height: 90px;
+    margin-top: 0.5rem;
+  }
 }
 
-.form__label {
-  width: 100%;
-  text-align: left;
-  font-size: 1.5rem;
-}
-
-.form__input {
-  margin-top: 0.5rem;
-  width: 100%;
-  border: 1px solid;
-}
-
-.form__button {
-  background-color: purple;
-  border: none;
-  width: 200px;
-  height: 80px;
-  color: white;
-  margin-top: 0.5rem;
-}

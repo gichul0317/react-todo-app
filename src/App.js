@@ -5,27 +5,43 @@ import './Partials/_setup.scss';
 
 
 function App() {
-  const todoArr = [
-    {
-      id: 1,
-      text: 'Do all exercise!',
-    },
-  ];
-
-  const [newData, setNewData] = useState(todoArr);
+  const [newData, setNewData] = useState([
+    { id: 1, text: 'Enter your Todos!' },
+  ]);
 
 
-  const submittedData = (data) => {
-    console.log(data);
+  const adddDataHandler = (data) => {
+    if (!data || /^\s*$/.test(data)) {
+      return;
+    }
     setNewData(prevState => {
-      return [...prevState, data];
+      const updatedData = [...prevState];
+      updatedData.unshift({ id: (Math.random() * 5).toString(), text: data });
+      return updatedData;
     });
+  }
+
+  const deleteDataHandler = index => {
+    setNewData(prevState => {
+      const updatedData = prevState.filter(item => item.id !== index);
+      return updatedData;
+    })
+  }
+
+  let content = (
+    <p style={{ textAlign: 'center' }}>Please add one...</p>
+  );
+
+  if (newData.length > 0) {
+    content = (
+      <Output data={newData} removedata={deleteDataHandler} />
+    );
   }
 
   return (
     <>
-      <InputField submit={submittedData} />
-      <Output data={newData} />
+      <InputField submit={adddDataHandler} />
+      {content}
     </>
   );
 }

@@ -6,11 +6,7 @@ function InputField(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const submitted = {
-      id: Math.random() * 2,
-      text: todo,
-    };
-    props.submit(submitted);
+    props.submit(todo);
     setToDo('');
   }
 
@@ -20,9 +16,13 @@ function InputField(props) {
 
   return (
     <form className="form" onSubmit={submitHandler}>
-      <label className="form__label" htmlFor="text">Course Goal</label>
-      <input className="form__input" type="text" id="text" onChange={inputHandler} value={todo} />
-      <button className="form__button" type="submit">Add Goal</button>
+      <label className="form__label" htmlFor="text">Enter your todos</label>
+      <input className="form__input" type="text"
+        id="text" name="text" onChange={inputHandler} value={todo}
+        placeholder="Add a todo"
+        required
+      />
+      <button className="form__button" type="submit">Add</button>
     </form>
   )
 }

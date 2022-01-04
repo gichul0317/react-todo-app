@@ -1,31 +1,25 @@
-import { useState } from 'react/cjs/react.development';
+import ItemList from '../ItemList/ItemList';
+import { RiCloseCircleLine } from 'react-icons/ri';
+import { TiEdit } from 'react-icons/ti';
 import './Output.scss';
 
-function Output(props) {
-  const clickHandler = (index) => {
-    console.log('clicked');
-    const updatedArr = props.data.filter(item => item.id !== index);
-    console.log(updatedArr);
-  }
 
+function Output(props) {
   return (
-    <div className="output">
+    <ul className="output">
       {
-        props.data.map((item, i) => {
+        props.data.map(item => {
           return (
-            <div
-              className="output__contents"
-              key={item.id}
-              onClick={() => clickHandler(i)}
-            >
-              <p>
-                {item.text}
-              </p>
-            </div>
+            <ItemList key={item.id} id={item.id} onDelete={props.removedata} >
+              {item.text}
+              <div className="icons">
+                <TiEdit />
+              </div>
+            </ItemList>
           )
         })
       }
-    </div>
+    </ul>
   )
 }
 

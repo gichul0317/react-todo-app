@@ -16,3 +16,15 @@
   }
 }
 
+@mixin title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 3rem;
+  font-style: italic;
+}
+
+@mixin text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+}
