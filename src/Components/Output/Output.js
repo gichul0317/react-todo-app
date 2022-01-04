@@ -1,5 +1,5 @@
 import { useState } from 'react/cjs/react.development';
-import './Output.css';
+import './Output.scss';
 
 function Output(props) {
   const clickHandler = (index) => {

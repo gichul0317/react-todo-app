@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './InputField.css';
+import './InputField.scss';
 
 function InputField(props) {
   const [todo, setToDo] = useState('');

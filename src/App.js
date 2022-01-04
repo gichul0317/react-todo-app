@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import InputField from './Components/InputField/InputField';
 import Output from './Components/Output/Output';
-import './App.css';
+import './Partials/_setup.scss';
 
 
 function App() {
