@@ -5,55 +5,39 @@ import './Partials/_setup.scss';
 
 
 function App() {
-  const [newData, setNewData] = useState([
-    { id: 1, text: 'Enter your Todos!' },
+  const [data, setData] = useState([
+    { id: 1, text: "what's up?" },
   ]);
 
-
-  const adddDataHandler = (data) => {
-    if (!data || /^\s*$/.test(data)) {
-      return;
-    }
-    setNewData(prevState => {
-      const updatedData = [...prevState];
-      updatedData.unshift({ id: (Math.random() * 5).toString(), text: data });
-      return updatedData;
+  const childFromParent = (data) => {
+    setData(prevState => {
+      const updated = [...prevState];
+      updated.unshift({ id: Math.random().toString(), text: data });
+      return updated;
     });
   }
 
-  const deleteDataHandler = id => {
-    setNewData(prevState => {
-      const updatedData = prevState.filter(item => item.id !== id);
-      return updatedData;
+  const deleteData = (id) => {
+    setData(prevState => {
+      const updated = prevState.filter(item => item.id !== id);
+      return updated;
     })
   }
 
-  // const updateDataHandler = (id, value) => {
-  //   setNewData(prevState => {
-  //     prevState.map(item => {
-  //       return (item.id === id ? value : item)
-  //     })
-  //   })
-  // }
+  let content = '';
 
-  let content = (
-    <p style={{ textAlign: 'center' }}>Please add one...</p>
-  );
-
-  if (newData.length > 0) {
-    content = (
-      <Output data={newData} removedata={deleteDataHandler}
-      // updatedata={updateDataHandler}
-      />
-    );
+  if (data.length === 0) {
+    content = <p style={{ textAlign: 'center', fontSize: '2rem' }}>Please add your todo...</p>
+  } else {
+    content = <Output data={data} deleteData={deleteData} />
   }
 
   return (
     <>
-      <InputField submit={adddDataHandler} />
+      <InputField pass={childFromParent} />
       {content}
     </>
-  );
+  )
 }
 
 export default App;

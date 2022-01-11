@@ -2,27 +2,39 @@ import { useState } from 'react';
 import './InputField.scss';
 
 function InputField(props) {
-  const [todo, setToDo] = useState('');
+  const [text, setText] = useState('');
+  const [valid, setValid] = useState(true);
+
+  const changeHandler = (e) => {
+    if (e.target.value.trim().length > 0) {
+      setValid(true);
+    }
+    setText(e.target.value);
+  }
 
   const submitHandler = (e) => {
     e.preventDefault();
-    props.submit(todo);
-    setToDo('');
-  }
-
-  const inputHandler = (e) => {
-    setToDo(e.target.value);
+    if (text.trim().length === 0) {
+      setValid(false);
+      return;
+    }
+    props.pass(text);
+    setText('');
   }
 
   return (
-    <form className="form" onSubmit={submitHandler}>
-      <label className="form__label" htmlFor="text">Enter your todos</label>
-      <input className="form__input" type="text"
-        id="text" name="text" onChange={inputHandler} value={todo}
-        placeholder="Add a todo"
-        required
+    <form className='form' onSubmit={submitHandler}>
+      <label className="form__label" htmlFor="text" id="text">What is up to?</label>
+      <input className={
+        valid === false ? 'form__input--invalid' : 'form__input'
+      }
+        type="text"
+        id="text"
+        placeholder='add your to do here'
+        onChange={changeHandler}
+        value={text}
       />
-      <button className="form__button" type="submit">Add</button>
+      <button className='form__button' type='submit'>Add ToDo</button>
     </form>
   )
 }
