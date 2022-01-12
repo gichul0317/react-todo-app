@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Button from '../Button/Button';
 import './InputField.scss';
 
 function InputField(props) {
@@ -24,9 +25,9 @@ function InputField(props) {
 
   return (
     <form className='form' onSubmit={submitHandler}>
-      <label className="form__label" htmlFor="text" id="text">What is up to?</label>
+      <label className={`form__label${!valid ? '--invalid' : ''}`} htmlFor="text" id="text">What is up to?</label>
       <input className={
-        valid === false ? 'form__input--invalid' : 'form__input'
+        !valid ? 'form__input--invalid' : 'form__input'
       }
         type="text"
         id="text"
@@ -35,6 +36,7 @@ function InputField(props) {
         value={text}
       />
       <button className='form__button' type='submit'>Add ToDo</button>
+      <Button>Add ToDo</Button>
     </form>
   )
 }
