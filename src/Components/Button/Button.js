@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Button = styled.button`
   @include text;
-  background-color: purple;
+  background-color: ${props => (props.invalid ? 'red' : 'purple')};
   border: none;
   color: #fff;
   width: 250px;
@@ -11,6 +11,10 @@ const Button = styled.button`
   &:hover, &:active {
     cursor: pointer;
     background-color: salmon;
+  }
+
+  @media(max-width: 767px) {
+    width: 100px;
   }
 `;
 

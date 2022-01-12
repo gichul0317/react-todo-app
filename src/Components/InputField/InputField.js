@@ -1,6 +1,46 @@
 import { useState } from 'react';
 import Button from '../Button/Button';
+import styled from 'styled-components';
 import './InputField.scss';
+
+const Form = styled.form`
+  max-width: 1100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgb(65, 58, 58);
+  margin-top: 2rem;
+
+  & label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 3rem;
+    font-style: italic;
+    & .invalid {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 3rem;
+      font-style: italic;
+      color: red;
+    }
+  }
+
+  & input {
+    width: 100%;
+    height: 100px;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    border-radius: 10px;
+    background-color: ${props => (props.invalid ? 'red' : 'transparent')}
+    &:active, &:focus {
+      background-color: purple;
+    }
+  }
+`;
 
 function InputField(props) {
   const [text, setText] = useState('');
@@ -23,21 +63,28 @@ function InputField(props) {
     setText('');
   }
 
+  const clickTest = () => {
+    console.log('clicked');
+  }
+
   return (
-    <form className='form' onSubmit={submitHandler}>
-      <label className={`form__label${!valid ? '--invalid' : ''}`} htmlFor="text" id="text">What is up to?</label>
-      <input className={
-        !valid ? 'form__input--invalid' : 'form__input'
-      }
-        type="text"
-        id="text"
-        placeholder='add your to do here'
-        onChange={changeHandler}
-        value={text}
-      />
-      <button className='form__button' type='submit'>Add ToDo</button>
-      <Button>Add ToDo</Button>
-    </form>
+    <>
+      <form className='form' onSubmit={submitHandler}>
+        <label className={`form__label${!valid ? '--invalid' : ''}`} htmlFor="text" id="text">What is up to?</label>
+        <input className={
+          !valid ? 'form__input--invalid' : 'form__input'
+        }
+          type="text"
+          id="text"
+          placeholder='add your to do here'
+          onChange={changeHandler}
+          value={text}
+        />
+        <button className='form__button' type='submit'>Add ToDo</button>
+        <Button onClick={clickTest} invalid={!valid}>Add ToDo</Button>
+      </form>
+    </>
+
   )
 }
 
