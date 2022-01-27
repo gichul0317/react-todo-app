@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Button from '../Button/Button';
 import styled from 'styled-components';
-import './InputField.scss';
+import ButtonModule from '../ButtonModule/ButtonModule';
+import styles from './InputField.module.scss';
 
 const Form = styled.form`
   max-width: 1100px;
@@ -69,19 +70,19 @@ function InputField(props) {
 
   return (
     <>
-      <form className='form' onSubmit={submitHandler}>
-        <label className={`form__label${!valid ? '--invalid' : ''}`} htmlFor="text" id="text">What is up to?</label>
-        <input className={
-          !valid ? 'form__input--invalid' : 'form__input'
-        }
+      <form className={styles.form} onSubmit={submitHandler}>
+        <label className={`${styles['form__label']} ${!valid && styles['form__label--invalid']}`} htmlFor="text" id="text">What is up to?</label>
+        <input
+          className={!valid ? `${styles['form__input--invalid']}` : `${styles['form__input']}`}
           type="text"
           id="text"
           placeholder='add your to do here'
           onChange={changeHandler}
           value={text}
         />
-        <button className='form__button' type='submit'>Add ToDo</button>
-        <Button onClick={clickTest} invalid={!valid}>Add ToDo</Button>
+        {/* <button className='form__button' type='submit'>Add ToDo</button> */}
+        {/* <Button onClick={clickTest} invalid={!valid}>Add ToDo</Button> */}
+        <ButtonModule />
       </form>
     </>
 
